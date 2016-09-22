@@ -16,12 +16,12 @@ if (process.env.REDIS_SECRET) {
 client.on('error', function (err) {
   console.log('Redis client error: ' + err);
 });
-console.log(process.env.PORT || 3000);
+
 app.use(co.wrap(function* (ctx) {
   var indexkey;
 
   if (ctx.request.query.index_key) {
-=    indexkey = process.env.APP_NAME +':index:'+ ctx.request.query.index_key;
+    indexkey = process.env.APP_NAME +':index:'+ ctx.request.query.index_key;
   } else {
     indexkey = process.env.APP_NAME +'index::current-content';
   }
