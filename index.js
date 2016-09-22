@@ -21,19 +21,15 @@ app.use(co.wrap(function* (ctx) {
   var indexkey;
 
   if (ctx.request.query.index_key) {
-    console.log(process.env.APP_NAME +':index:'+ ctx.request.query.index_key);
     indexkey = process.env.APP_NAME +':index:'+ ctx.request.query.index_key;
   } else {
-    console.log(process.env.APP_NAME +':index:current-content');
     indexkey = process.env.APP_NAME +':index:current-content';
   }
   var index = yield dbCo.get(indexkey);
 
   if (index) {
-    console.log(index);
     ctx.body = index;
   } else {
-    console.log('not found');
     ctx.status = 404;
   }
 }));
