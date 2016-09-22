@@ -6,10 +6,7 @@ const redis = require('redis'),
     Koa = require('koa');
 
 const app = exports.app = new Koa(),
-    client  = redis.createClient(
-      process.env.REDIS_PORT,
-      process.env.REDIS_HOST
-    ),
+    client  = redis.createClient(process.env.REDIS_URL),
     dbCo = coRedis(client);
 
 if (process.env.REDIS_SECRET) {
