@@ -16,9 +16,8 @@ if (process.env.REDIS_SECRET) {
 client.on('error', function (err) {
   console.log('Redis client error: ' + err);
 });
-
+console.log(process.env.PORT || 3000);
 app.use(co.wrap(function* (ctx) {
-
   var indexkey;
 
   if (ctx.request.query.index_key) {
@@ -29,8 +28,10 @@ app.use(co.wrap(function* (ctx) {
   var index = yield dbCo.get(indexkey);
 
   if (index) {
+    console.log('something');
     ctx.body = index;
   } else {
+    console.log('not found!!!');
     ctx.status = 404;
   }
 }));
